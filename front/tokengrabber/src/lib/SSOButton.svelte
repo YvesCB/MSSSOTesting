@@ -1,26 +1,30 @@
 <script lang="ts">
   import { PublicClientApplication } from "@azure/msal-browser";
   import type { MSUser } from "$lib/types";
-  import { CLIENT_ID, AUTHORITY } from "$lib/server/secrets";
   import type {
     Configuration,
     AuthenticationResult,
     AccountInfo,
   } from "@azure/msal-browser";
 
+  import { PUBLIC_CLIENT_ID, PUBLIC_AUTHORITY } from "$env/static/public";
+
   const msalConfig: Configuration = {
     auth: {
-      clientId: CLIENT_ID,
-      authority: AUTHORITY,
+      clientId: PUBLIC_CLIENT_ID,
+      authority: PUBLIC_AUTHORITY,
       redirectUri: "http://localhost:5173",
     },
   };
 
-  const msalInstance = new PublicClientApplication(msalConfig);
-
   const loginRequest = {
-    scopes: ["openid", "api://" + CLIENT_ID + "/Infopanel.Login", "User.Read"], // Replace with the scopes you need
+    scopes: [
+      "openid",
+      "api://" + PUBLIC_CLIENT_ID + "/Infopanel.Login",
+      "User.Read",
+    ], // Replace with the scopes you need
   };
+
   let accessToken: string | null = null;
   let tennantId: string | null = null;
 
@@ -28,6 +32,7 @@
 
   let errorMessage: string = "";
 
+  let msalInstance = new PublicClientApplication(msalConfig);
   async function handleLogin() {
     try {
       await msalInstance.initialize();
