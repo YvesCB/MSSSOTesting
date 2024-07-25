@@ -15,6 +15,9 @@
       authority: PUBLIC_AUTHORITY,
       redirectUri: "http://localhost:5173",
     },
+    cache: {
+      cacheLocation: "localeStorage",
+    },
   };
 
   const loginRequest = {
