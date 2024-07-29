@@ -21,6 +21,14 @@ const msalConfig = {
 	},
 };
 
+const loginRequest = {
+	scopes: [
+		"openid",
+		"api://" + PUBLIC_CLIENT_ID + "/Infopanel.Login",
+		"User.Read",
+	]
+}
+
 const msalInstance = new PublicClientApplication(msalConfig);
 
-export { msalInstance };
+export { msalInstance, loginRequest };
