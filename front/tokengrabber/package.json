@@ -22,6 +22,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@azure/msal-browser": "^3.19.1"
+		"@azure/msal-browser": "^3.19.1",
+		"open-props": "^1.7.5"
 	}
 }
